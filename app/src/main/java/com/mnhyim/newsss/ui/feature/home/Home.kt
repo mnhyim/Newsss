@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mnhyim.newsss.domain.model.News
+import com.mnhyim.newsss.ui.components.ErrorItem
 import com.mnhyim.newsss.ui.components.HomeHeader
 import com.mnhyim.newsss.ui.components.NewsItem
 import com.mnhyim.newsss.ui.navigation.Routes
@@ -29,8 +30,8 @@ fun Home(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    when {
-        state.isLoading -> {
+    when (state.screenState) {
+        is HomeScreenState.Loading -> {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier.fillMaxSize()
@@ -39,13 +40,20 @@ fun Home(
             }
         }
 
-        else -> {
+        is HomeScreenState.Success -> {
             HomeScreen(
-                news = state.news,
-                lastFetch = "",
+                news = (state.screenState as HomeScreenState.Success).news,
                 onNavigate = onNavigate,
                 onRefresh = viewModel::getTopHeadlines,
                 modifier = modifier
+            )
+        }
+
+        is HomeScreenState.Error -> {
+            ErrorItem(
+                errorMessage = (state.screenState as HomeScreenState.Error).message
+                    ?: "General Error",
+                onRefetch = viewModel::getTopHeadlines,
             )
         }
     }
@@ -54,7 +62,6 @@ fun Home(
 @Composable
 private fun HomeScreen(
     news: List<News>,
-    lastFetch: String,
     onNavigate: (Routes) -> Unit,
     onRefresh: () -> Unit,
     modifier: Modifier = Modifier
@@ -63,7 +70,6 @@ private fun HomeScreen(
         modifier = modifier
     ) {
         HomeHeader(
-            lastFetch = lastFetch,
             onRefresh = onRefresh,
             modifier = Modifier.padding(16.dp, 16.dp, 16.dp, 8.dp)
         )
@@ -78,7 +84,6 @@ private fun HomeScreen(
                         onNavigate(
                             Routes.Detail(
                                 title = it.title,
-                                source = it.source,
                                 description = it.description,
                                 url = it.url,
                                 urlToImage = it.urlToImage,

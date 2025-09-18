@@ -34,7 +34,6 @@ fun MainNavHost(
             val backstack = backStackEntry.toRoute<Routes.Detail>()
             val news = News(
                 title = backstack.title,
-                source = backstack.source,
                 description = backstack.description,
                 url = backstack.url,
                 urlToImage = backstack.urlToImage,

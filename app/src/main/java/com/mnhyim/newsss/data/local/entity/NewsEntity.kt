@@ -1,15 +1,15 @@
 package com.mnhyim.newsss.data.local.entity
 
-import com.mnhyim.newsss.data.remote.dto.SourceDto
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-/* TODO: add @Entity annotation later */
+@Entity("news")
 data class NewsEntity(
-    val source: SourceDto,
-    val author: String,
+    val author: String?,
     val title: String,
     val description: String?,
-    val url: String,
+    @PrimaryKey val url: String,
     val urlToImage: String,
     val publishedAt: String,
-    val content: String?
+    val content: String?,
 )

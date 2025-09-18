@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -73,6 +74,10 @@ dependencies {
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.retrofit.converter)
     implementation(libs.okhttp.logging.interceptor)
+
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
 
     implementation(libs.compose.navigation)
     implementation(libs.google.fonts)

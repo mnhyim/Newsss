@@ -1,6 +1,8 @@
 package com.mnhyim.newsss.di
 
+import androidx.room.Room
 import com.mnhyim.newsss.BuildConfig
+import com.mnhyim.newsss.data.local.NewsDatabase
 import com.mnhyim.newsss.data.remote.NewsApiService
 import com.mnhyim.newsss.data.util.ApiKeyInterceptor
 import com.squareup.moshi.Moshi
@@ -12,7 +14,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val dataModule = module {
-    /* TODO: declare Room stuff here later for offline persistence */
+    single {
+        Room.databaseBuilder(
+            get(),
+            klass = NewsDatabase::class.java,
+            "app-db"
+        ).build()
+    }
+
+    single { get<NewsDatabase>().appDao() }
 }
 
 val networkModule = module {

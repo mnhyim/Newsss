@@ -7,7 +7,6 @@ import java.time.Instant
 
 fun NewsEntity.toDomain() = News(
     title = title,
-    source = source.name ?: "",
     description = description ?: "",
     url = url,
     urlToImage = urlToImage,
@@ -15,10 +14,19 @@ fun NewsEntity.toDomain() = News(
 )
 
 fun NewsDto.toDomain() = News(
-    title = title ?: "",
-    source = source.name ?: "",
+    title = title,
     description = description ?: "",
-    url = url ?: "",
+    url = url,
     urlToImage = urlToImage ?: "",
     publishedAt = Instant.parse(publishedAt)
+)
+
+fun NewsDto.toEntity() = NewsEntity(
+    author = author,
+    title = title,
+    description = description,
+    url = url,
+    urlToImage = urlToImage ?: "",
+    publishedAt = publishedAt.toString(),
+    content = content,
 )

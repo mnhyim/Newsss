@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 
 val appModule = module {
-    single<NewsRepository> { NewsRepositoryImpl(get()) }
+    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
 }
 
 val viewModelModule = module {
