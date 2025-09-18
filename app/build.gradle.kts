@@ -58,6 +58,17 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
+    implementation(libs.retrofit)
+    implementation(libs.moshi.core)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.retrofit.converter)
+    implementation(libs.okhttp.logging.interceptor)
+
     implementation(libs.compose.navigation)
     implementation(libs.google.fonts)
 }
