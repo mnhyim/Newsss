@@ -54,12 +54,12 @@ fun NewsItem(
             Text(
                 text = news.publishedAt.toRelativeTimeString(),
                 style = MaterialTheme.typography.labelSmall,
-                modifier = Modifier.padding(16.dp, 8.dp, 16.dp, 4.dp)
+                modifier = Modifier.padding(16.dp,8.dp,16.dp,8.dp)
             )
             Text(
                 text = news.title,
                 style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.padding(16.dp, 0.dp, 16.dp, 8.dp)
+                modifier = Modifier.padding(16.dp,0.dp,16.dp,16.dp)
             )
         }
     }
