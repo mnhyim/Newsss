@@ -40,6 +40,7 @@ fun Home(
 
     HomeScreen(
         news = dummyNews,
+        onNavigate = onNavigate,
         modifier = modifier
     )
 }
@@ -47,6 +48,7 @@ fun Home(
 @Composable
 private fun HomeScreen(
     news: List<News>,
+    onNavigate: (Routes) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
