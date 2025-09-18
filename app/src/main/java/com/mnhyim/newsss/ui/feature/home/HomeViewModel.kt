@@ -12,7 +12,7 @@ import timber.log.Timber
 class HomeViewModel(
     /* TODO: Probably should use Usecase later instead of accessing repository directly here*/
     private val repository: NewsRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(HomeUiState())
     val state = _state.asStateFlow()

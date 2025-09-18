@@ -18,7 +18,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String","NEWS_API_KEY","\"${project.findProperty("NEWS_API_KEY")}\""
+        buildConfigField(
+            "String", "NEWS_API_KEY", "\"${project.findProperty("NEWS_API_KEY")}\""
         )
     }
 
@@ -76,4 +77,6 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.google.fonts)
     implementation(libs.timber)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
 }

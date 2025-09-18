@@ -13,9 +13,6 @@ import com.mnhyim.newsss.domain.model.News
 import com.mnhyim.newsss.ui.components.NewsItem
 import com.mnhyim.newsss.ui.navigation.Routes
 import org.koin.compose.viewmodel.koinViewModel
-import java.time.Instant
-import java.time.temporal.ChronoUnit
-import kotlin.random.Random
 
 @Composable
 fun Home(
@@ -46,7 +43,18 @@ private fun HomeScreen(
         items(items = news) {
             NewsItem(
                 news = it,
-                onClick = {}
+                onClick = {
+                    onNavigate(
+                        Routes.Detail(
+                            title = it.title,
+                            source = it.source,
+                            description = it.description,
+                            url = it.url,
+                            urlToImage = it.urlToImage,
+                            publishedAt = it.publishedAt.toString()
+                        )
+                    )
+                }
             )
         }
     }

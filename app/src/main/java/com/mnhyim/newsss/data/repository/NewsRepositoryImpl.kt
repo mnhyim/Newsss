@@ -6,8 +6,6 @@ import com.mnhyim.newsss.data.remote.NewsApiService
 import com.mnhyim.newsss.domain.model.News
 import com.mnhyim.newsss.domain.repository.NewsRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -25,7 +23,8 @@ class NewsRepositoryImpl(
                 Result.success(remote.map { it.toDomain() })
             } catch (e: Exception) {
                 Timber.d("E: ${e.localizedMessage}")
-                local.let { Result.success(it.map { news -> news.toDomain() }) } ?: Result.failure(e)
+                local.let { Result.success(it.map { news -> news.toDomain() }) }
+                    ?: Result.failure(e)
             }
         }
     }
