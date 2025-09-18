@@ -75,4 +75,5 @@ dependencies {
 
     implementation(libs.compose.navigation)
     implementation(libs.google.fonts)
+    implementation(libs.timber)
 }
