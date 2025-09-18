@@ -4,6 +4,7 @@ import android.app.Application
 import com.mnhyim.newsss.di.appModule
 import com.mnhyim.newsss.di.dataModule
 import com.mnhyim.newsss.di.networkModule
+import com.mnhyim.newsss.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -18,6 +19,7 @@ class MainApplication: Application() {
             androidContext(this@MainApplication)
             modules(
                 appModule,
+                viewModelModule,
                 dataModule,
                 networkModule
             )

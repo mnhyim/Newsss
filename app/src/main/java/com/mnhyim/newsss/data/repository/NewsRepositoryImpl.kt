@@ -14,18 +14,13 @@ import timber.log.Timber
 class NewsRepositoryImpl(
     private val api: NewsApiService
 ) : NewsRepository {
-
-    override val news: Flow<List<News>> = flow {
-
-    }
-
     override suspend fun getTopHeadlines(): Result<List<News>> {
         return withContext(Dispatchers.IO) {
             /* TODO: Get local data from Room here */
             val local: List<NewsEntity> = emptyList()
 
             try {
-                val remote = api.getTopHeadlines(country = "id").articles
+                val remote = api.getTopHeadlines(country = "us").articles
                 /* TODO: Should insert fetched data into Room here later */
                 Result.success(remote.map { it.toDomain() })
             } catch (e: Exception) {

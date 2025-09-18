@@ -22,13 +22,13 @@ val networkModule = module {
             .build()
     }
 
-    single {
+    single<HttpLoggingInterceptor> {
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
     }
 
-    single { ApiKeyInterceptor(BuildConfig.NEWS_API_KEY) }
+    single<ApiKeyInterceptor> { ApiKeyInterceptor(BuildConfig.NEWS_API_KEY) }
 
     single<OkHttpClient> {
         OkHttpClient.Builder()
@@ -39,7 +39,7 @@ val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2")
+            .baseUrl("https://newsapi.org/v2/")
             .client(get<OkHttpClient>())
             .addConverterFactory(MoshiConverterFactory.create(get<Moshi>()))
             .build()
