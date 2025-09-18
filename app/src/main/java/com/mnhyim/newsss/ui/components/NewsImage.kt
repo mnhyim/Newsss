@@ -24,7 +24,6 @@ fun NewsImage(
     url: String,
     modifier: Modifier = Modifier
 ) {
-    /* TODO: News image should be here, fallback to icon when there's no image or network error */
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
