@@ -34,13 +34,11 @@ private fun DetailScreen(
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp, 0.dp, 16.dp, 16.dp)
     ) {
-
         NewsImage(
             url = news.urlToImage,
         )
-
         Text(
             text = news.title,
             style = MaterialTheme.typography.titleMedium,

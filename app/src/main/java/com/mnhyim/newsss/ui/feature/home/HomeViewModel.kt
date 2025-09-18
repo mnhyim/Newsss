@@ -21,14 +21,22 @@ class HomeViewModel(
         getTopHeadlines()
     }
 
-    private fun getTopHeadlines() {
+    fun getTopHeadlines() {
         viewModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
             repository.getTopHeadlines()
                 .onSuccess { result ->
-                    _state.update { it.copy(news = result) }
+                    _state.update {
+                        it.copy(
+                            news = result,
+                            isLoading = false,
+                            lastFetch = result[0].publishedAt
+                        )
+                    }
                 }
                 .onFailure { exception ->
                     Timber.d(exception)
+                    _state.update { it.copy(isLoading = false) }
                 }
         }
     }
