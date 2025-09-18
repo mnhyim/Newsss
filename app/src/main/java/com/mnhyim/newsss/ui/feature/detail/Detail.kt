@@ -63,9 +63,11 @@ private fun DetailScreen(
             modifier = Modifier.padding(horizontal = 16.dp)
         )
         Button(
-            onClick = { uriHandler.openUri(news.url)},
+            onClick = { uriHandler.openUri(news.url) },
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.fillMaxWidth().padding(16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
             Text("Read full article")
         }
