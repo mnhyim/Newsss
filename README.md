@@ -1,10 +1,5 @@
 # Newsss
 Simple news headlines app built with Kotlin and Jetpack Compose using data from [News API](https://newsapi.org/), following the MVVM architecture.
-## Project Setup
-1. Register and get your API key from [here](https://newsapi.org/register)
-2. Copy gradle.properties.default to gradle.properties.
-3. Set your API key in NEWS_API_KEY inside your newly copied gradle.properties. You can use this key for now: ```NEWS_API_KEY=b5b3fd01223347e6aaf0ca07db30fec2```
-4. Run your code.
 ## Tech stack
 - Kotlin – Primary language for app development.
 - Jetpack Compose – Used for building UI.
@@ -19,5 +14,6 @@ I’m quite proud of the offline-first setup I added, even though it wasn’t re
 - I’m not totally sure of a better way to handle the AppBar logic from MainActivity. Usually, I check if currentDestination.route matches the route’s qualified name, like ```Routes.Home::class.qualifiedName```. In the case of Detail, that doesn’t work because the route’s qualified name includes all its parameters, so for now I just check if the current route contains ```Routes.Detail``` and display the appropriate TopAppBar.
 - The API doesn’t specify which parameters can be null, so for now I just set any null values to an empty string.
 ## Future Improvements
+- In a real project I’d improve API key security by adding ```gradle.properties``` to ```.gitignore```, committing a ```gradle.properties.default``` instead, and instructing users to copy it to ```gradle.properties``` and place their API key there.
 - I was thinking of modularizing the project, but decided it would be overengineering for this simple app. If I ever do modularize it in the future, I’d probably follow the structure I’ve already used in this project (modularize by feature and layer).
 - I’m not super happy with how I implemented the Detail screen right now because I had to pass a lot of parameters. If the API ever adds that feature, I’d improve it by just passing the news ID from Home to Detail and letting the DetailViewModel fetch the item directly. I guess I can pass the news object directly instead but I'm not sure if that's better.
